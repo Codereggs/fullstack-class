@@ -13,6 +13,11 @@ const initialNotes = [
     important: false,
     date: new Date(),
   },
+  {
+    content: 'Mañana la aventura comienza',
+    important: true,
+    date: new Date(),
+  },
 ];
 
 const getAllContentFromNotes = async () => {

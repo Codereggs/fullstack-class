@@ -20,10 +20,9 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World</h1>');
 });
 
-app.get('/api/notes', (request, response) => {
-  Note.find({}).then(notes => {
-    response.json(notes);
-  });
+app.get('/api/notes', async (request, response) => {
+  const notes = await Note.find({});
+  response.json(notes);
 });
 
 app.get('/api/notes/:id', (request, response, next) => {
@@ -66,7 +65,7 @@ app.delete('/api/notes/:id', (request, response, next) => {
     .catch(error => next(error));
 });
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/notes', async (request, response) => {
   const note = request.body;
 
   if (!note || !note.content) {
@@ -81,9 +80,12 @@ app.post('/api/notes', (request, response) => {
     date: new Date().toISOString(),
   });
 
-  newNote.save().then(savedNote => {
+  try {
+    const savedNote = await newNote.save();
     response.json(savedNote);
-  });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(notFound);
