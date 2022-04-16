@@ -14,4 +14,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },
+  env: {
+    'jest/globals': true,
+  },
 };
