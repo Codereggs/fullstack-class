@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/notes/625acd87bf661db6fbe70f4a
+Content-Type: application/json
+
+{
+  "content": "ESTA ES LA NOTA AMIGOS UNIDSE!!",
+  "important": true
+}
